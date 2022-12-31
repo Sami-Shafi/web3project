@@ -4,6 +4,12 @@ pragma solidity 0.8.8;
 contract SimpleStorage {
     uint256 public myNumber;
     string public name;
+    People public sami = People({personAge: 17, personName: "Sami"});
+
+    struct People {
+        uint256 personAge;
+        string personName;
+    }    
 
     function changeNumber(uint256 _num) public {
         myNumber = _num;

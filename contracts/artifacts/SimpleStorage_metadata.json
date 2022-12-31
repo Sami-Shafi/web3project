@@ -82,6 +82,24 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sami",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "personAge",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "personName",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -112,11 +130,11 @@
 	},
 	"sources": {
 		"contracts/SimpleStorage.sol": {
-			"keccak256": "0xe6ea0b2967eb33fdc9f5ae80054356185858269bbdfc930111da9b1f26a1a70b",
+			"keccak256": "0xbdde8305f7cfd3fcc20fd3975a10bbe0dcc235a502e91e3566908636ab7fb6f8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://00c5f798f752547ace84152ff6390cb9f714a1a67968b5c3430def8bde168218",
-				"dweb:/ipfs/QmXi3zpxkU4wHsjQAUHwihYZFzSyRzXVt5XpR5YYrzNiGn"
+				"bzz-raw://23e7e1e95fe0e785968e523ad8341fca4bb46de84dd77d78a8880f74915960e9",
+				"dweb:/ipfs/QmbK8KJj1j8wZm6kY2dP6uNw4HUz9oLhdE5hVEkNdkQNSR"
 			]
 		}
 	},
