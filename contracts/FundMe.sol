@@ -8,24 +8,27 @@ pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
 
+// this error will trigger if the user is not authorized
+error UnAuthorized();
+error MinimumValueError();
+error WithdrawFailed();
+
 contract FundMe {
     using PriceConverter for uint256;
 
     mapping(address => uint256) public addressToAmountFunded;
 
+    uint256 public constant MINIMUM_USD = 50 * 1e18;
     address[] public funders;
-    address public owner;
+    address public immutable i_owner;
 
     constructor() {
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     function fund() public payable {
-        uint256 minimumUSD = 50 * 1e18;
-        require(
-            msg.value.conversion() >= minimumUSD,
-            "You need to spend more ETH!"
-        );
+        if (msg.value.conversion() < MINIMUM_USD) revert MinimumValueError();
+
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
     }
@@ -53,10 +56,12 @@ contract FundMe {
         // call
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call Failed!");
+        if (!callSuccess) revert WithdrawFailed();
     }
 
     modifier onlyOwner {
-        require(msg.sender == owner, "You are not the Owner!");
+        // require(msg.sender == i_owner, "You are not the Owner!");
+        if (msg.sender != i_owner) revert UnAuthorized();
         _;
     }
 }
